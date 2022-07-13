@@ -40,8 +40,9 @@ The processing of the `jsonseq` keyword, or truthfully of JSON Text Sequences th
 
 This document does not define the specific implementation of streams. A programming language or implementation with lazy iterable support SHOULD represent streams using this language feature.
 
-The core JSON vocabulary does not allow external vocabularies to define additional types via the `type` keyword.
-Instead, introduced here below is a `streamType` keyword, which can be used to assert a value is a stream.
+The core JSON vocabulary [does not allow](https://json-schema.org/draft/2020-12/json-schema-core.html#name-instance-data-model) external vocabularies to define additional types via the `type` keyword.
+It does however [allow](https://json-schema.org/draft/2020-12/json-schema-core.html#name-non-json-instances) for the application of JSON Schema to types beyond those provided by JSON.
+A `streamType` keyword is therefore introduced below, which can be used to assert a value is a stream in the sense defined here.
 
 ### 4.2 The `streamType` Keyword
 
