@@ -20,7 +20,12 @@ The `$id` for the meta-schema is `https://python-jsonschema.github.io/vocab-json
 ### 3.1 Syntax and Semantics
 
 The value of the `jsonseq` keyword MUST be a valid JSON Schema.
-This schema, when applied to a sequence, MUST be evaluated against each sequence element, thereby producing itself a stream of validation results corresponding to each element.
+
+This schema, when applied to a sequence, MUST be evaluated against each sequence element.
+The result of this evaluation is an annotation which itself is a stream.
+The elements of this annotation MUST be the corresponding validation result for each element in the sequence.
+
+Validating a non-stream instance against this keyword always succeeds.
 
 ### 3.2 Contextual Behavior
 
