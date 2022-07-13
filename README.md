@@ -2,11 +2,11 @@
 
 ## 1. Purpose
 
-This document describes a simple [JSON Schema vocabulary](https://json-schema.org/draft/2020-12/json-schema-core.html#name-schema-vocabularies) defining two keywords that can be used to validate in the JSON Text Sequence format as specified by [RFC 7464](https://datatracker.ietf.org/doc/html/rfc7464).
+This document describes a simple [JSON Schema vocabulary](https://json-schema.org/draft/2020-12/json-schema-core.html#name-schema-vocabularies) that can be used to validate JSON text sequences as specified by [RFC 7464](https://datatracker.ietf.org/doc/html/rfc7464).
 
-In order to do so, it also loosely defines a `stream` type, representing elements of the sequence.
+It defines two keywords, described below, whose purpose are to allow the application of JSON Schema keywords to individual elements in a JSON text sequence (hereafter "sequence").
 
-The purpose of keywords introduced are to allow the application of JSON Schema keywords to individual elements in a JSON text sequence (hereafter "sequence"), though indeed the entirety of a sequence is not itself JSON, nor does JSON Schema even have a "stream" type.
+Though indeed the entirety of a sequence is not itself a standard JSON type (nor valid JSON), proscribed below is a loose [`stream` type](#streams) whose implementation is left mostly to the specific language or implementation to further define.
 
 ## 2. Declarations
 
