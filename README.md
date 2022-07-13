@@ -26,6 +26,12 @@ This schema, when applied to a sequence, MUST be evaluated against each sequence
 
 The `jsonseq` keyword MUST be processed contextually in accordance with the draft of the schema in which it is used. For example, if `jsonseq` is used in a schema that declares draft 2019-09, then its schema value must be processed using the rules specified by the 2019-09 specification.
 
+### 3.3 Beyond JSON Text Sequences
+
+Implementations MAY choose to offer support for notionally similar formats to JSON Text Sequence, such as [`jsonl`](https://jsonlines.org/), which uses newlines instead of record separators but is otherwise quite similar.
+
+If such support is present, implementations SHOULD use the same `jsonseq` keyword to apply validation to streams containing `jsonl` data.
+
 ## 4. Streams
 
 ### 4.1 Overview & Representation
