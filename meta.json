@@ -1,0 +1,29 @@
+{
+    "$id": "https://python-jsonschema.github.io/vocab-json-seq/meta.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$vocabulary": {
+        "https://json-schema.org/draft/2020-12/vocab/core": true,
+        "https://json-schema.org/draft/2020-12/vocab/applicator": true,
+        "https://json-schema.org/draft/2020-12/vocab/validation": true,
+        "https://json-schema.org/draft/2020-12/vocab/meta-data": true,
+        "https://json-schema.org/draft/2020-12/vocab/format-annotation": true,
+        "https://python-jsonschema.github.io/vocab-json-seq/": true
+    },
+    "$dynamicAnchor": "meta",
+
+    "title": "A JSON Text Sequence vocabulary for JSON Schema",
+    "allOf": [
+        { "$ref": "https://json-schema.org/draft/2020-12/schema" }
+    ],
+    "properties": {
+        "streamType": {
+            "description": "Validates whether an instance is a stream",
+            "default": null,
+            "type": ["boolean", "null"]
+        },
+        "jsonseq": {
+            "description": "A JSON schema to apply, element-wise, to the sequence",
+            "$ref": "https://json-schema.org/draft/2020-12/schema"
+        }
+    }
+}
