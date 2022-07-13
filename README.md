@@ -25,7 +25,6 @@ Applying the keyword to a stream instance MUST produce a single annotation resul
 The contents of the annotation stream MUST be the corresponding result of applying the schema element-wise to each element of the sequence.
 
 Validating an empty stream against this keyword (one which contains no elements) produces an empty stream annotation, as does validating a non-stream instance.
-(As discussed [below](#
 
 ### 3.2 Contextual Behavior
 
