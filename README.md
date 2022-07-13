@@ -57,9 +57,9 @@ When `true`, validation MUST succeed if the instance is a stream, and fail other
 When `false`, validation MUST fail if the instance is a stream, and succeed otherwise.
 When `null`, validation always succeeds.
 
-Implementations MUST also allow JSON `array` values to be considered streams for the purpose of the keywords defined in this vocabulary.
+Implementations MUST also consider JSON `array` values to be streams for the purpose of the keywords defined in this vocabulary.
 
-Schema authors who do not wish to allow `array` inputs are RECOMMENDED to use existing JSON Schema mechanisms to exclude them (e.g. `{"not": {"type": "array"}}`).
+Schema authors who do not wish to allow `array` valued instances are RECOMMENDED to use existing JSON Schema mechanisms to exclude them (e.g. `{"not": {"type": "array"}}`).
 
 (Editor's note: the definition of `streamType` may be moved to a separate vocabulary in the future).
 
