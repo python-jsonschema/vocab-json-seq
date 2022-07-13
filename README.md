@@ -42,7 +42,7 @@ Instead, introduced here below is a `streamType` keyword, which can be used to a
 The value of the `streamType` keyword MUST be a boolean, or the value `null`.
 
 When `true`, validation MUST succeed if the instance is a stream, and fail otherwise.
-When `false`, validation MUST fail if the instance is a stream, and fail otherwise.
+When `false`, validation MUST fail if the instance is a stream, and succeed otherwise.
 When `null`, validation always succeeds.
 
 Implementations MUST also allow JSON `array` values to be considered streams for the purpose of the keywords defined in this vocabulary.
