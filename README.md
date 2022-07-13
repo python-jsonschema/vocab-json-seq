@@ -4,7 +4,7 @@
 
 This document describes a simple [JSON Schema vocabulary](https://json-schema.org/draft/2020-12/json-schema-core.html#name-schema-vocabularies) that can be used to validate JSON text sequences as specified by [RFC 7464](https://datatracker.ietf.org/doc/html/rfc7464).
 
-It defines two keywords which allow applying a JSON schema to individual elements in a JSON text sequence (hereafter "sequence").
+It defines two keywords which allow applying a JSON schema to individual elements in a JSON text sequence (hereafter "sequence") and producing an annotation of the element-wise result of application of the schema.
 
 Though indeed the entirety of a sequence is not itself a standard JSON type (nor valid JSON), proscribed below is a loose [`stream` type](#streams) whose implementation is left mostly to the specific language or implementation to further define.
 
@@ -19,13 +19,13 @@ The `$id` for the meta-schema is `https://python-jsonschema.github.io/vocab-json
 
 ### 3.1 Syntax and Semantics
 
-The value of the `jsonseq` keyword MUST be a valid JSON Schema.
+The `jsonseq` keyword is a JSON Schema [annotation](https://json-schema.org/draft/2020-12/json-schema-core.html#name-annotations) whose value MUST be a valid JSON Schema.
 
-This schema, when applied to a sequence, MUST be evaluated against each sequence element.
-The result of this evaluation is an annotation which itself is a stream.
-The elements of this annotation MUST be the corresponding validation result for each element in the sequence.
+Applying the keyword to a stream instance MUST produce a single annotation result, itself a new stream.
+The contents of the annotation stream MUST be the corresponding result of applying the schema element-wise to each element of the sequence.
 
-Validating a non-stream instance against this keyword always succeeds.
+Validating an empty stream against this keyword (one which contains no elements) produces an empty stream annotation, as does validating a non-stream instance.
+(As discussed [below](#
 
 ### 3.2 Contextual Behavior
 
@@ -45,9 +45,15 @@ The processing of the `jsonseq` keyword, or truthfully of JSON Text Sequences th
 
 This document does not define the specific implementation of streams. A programming language or implementation with lazy iterable support SHOULD represent streams using this language feature.
 
-The core JSON vocabulary [does not allow](https://json-schema.org/draft/2020-12/json-schema-core.html#name-instance-data-model) external vocabularies to define additional types via the `type` keyword.
+Implementations MUST also consider JSON `array` values to be streams for the purpose of the keywords defined in this vocabulary.
+
+Schema authors who do not wish to allow `array` valued instances are RECOMMENDED to use existing JSON Schema mechanisms to exclude them (e.g. `{"not": {"type": "array"}}`).
+
+The core JSON vocabulary [does not allow](https://json-schema.org/draft/2020-12/json-schema-core.html#name-instance-data-model) external vocabularies to define additional data types via the `type` keyword.
 It does however [allow](https://json-schema.org/draft/2020-12/json-schema-core.html#name-non-json-instances) for the application of JSON Schema to types beyond those provided by JSON.
 A `streamType` keyword is therefore introduced below, which can be used to assert a value is a stream in the sense defined here.
+
+(Editor's note: the definition of `streamType` may be moved to a separate vocabulary in the future).
 
 ### 4.2 The `streamType` Keyword
 
@@ -56,12 +62,6 @@ The value of the `streamType` keyword MUST be a boolean, or the value `null`.
 When `true`, validation MUST succeed if the instance is a stream, and fail otherwise.
 When `false`, validation MUST fail if the instance is a stream, and succeed otherwise.
 When `null`, validation always succeeds.
-
-Implementations MUST also consider JSON `array` values to be streams for the purpose of the keywords defined in this vocabulary.
-
-Schema authors who do not wish to allow `array` valued instances are RECOMMENDED to use existing JSON Schema mechanisms to exclude them (e.g. `{"not": {"type": "array"}}`).
-
-(Editor's note: the definition of `streamType` may be moved to a separate vocabulary in the future).
 
 ## 5. A Short Example
 
