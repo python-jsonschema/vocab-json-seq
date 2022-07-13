@@ -102,3 +102,9 @@ false
 true
 true
 ```
+
+## 6. Limitations & Open Questions
+
+Implementations of JSON Schema which do not support types beyond those present in JSON will undoubtedly not be able to implement this vocabulary easily.
+In particular, implementation of this vocabulary requires a statically-typed implementation's `validate` entry point to operate on a union type (of JSON or stream), or requires equivalent language functionality.
+An interesting note is that such possibilities may not be unique to this vocabulary, as any vocabulary introducing a new non-JSON-native type may change the signature of their validation methods.
